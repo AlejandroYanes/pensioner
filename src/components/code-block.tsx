@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+ 
 'use client'
 import { useState } from 'react';
 import { ClipboardIcon } from 'lucide-react';
