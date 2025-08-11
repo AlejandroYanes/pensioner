@@ -1,9 +1,10 @@
-import '@/styles/globals.css';
-
 import { type Metadata } from 'next';
 import { Geist } from 'next/font/google';
 
 import { TRPCReactProvider } from '@/trpc/react';
+import { Toaster } from '@/components/sooner';
+
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Create T3 App',
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable}`}>
       <body>
+        <Toaster closeButton richColors position="bottom-right" visibleToasts={3} />
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
