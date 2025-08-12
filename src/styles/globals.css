@@ -9,7 +9,7 @@
     --color-card-foreground: hsl(20 14.3% 4.1%);
     --color-popover: hsl(0 0% 100%);
     --color-popover-foreground: hsl(20 14.3% 4.1%);
-    --color-primary: hsl(24.6 95% 53.1%);
+    --color-primary: oklch(0.61 0.11 222);
     --color-primary-foreground: hsl(60 9.1% 97.8%);
     --color-secondary: hsl(60 4.8% 95.9%);
     --color-secondary-foreground: hsl(24 9.8% 10%);
@@ -21,7 +21,7 @@
     --color-destructive-foreground: hsl(60 9.1% 97.8%);
     --color-border: hsl(20 5.9% 90%);
     --color-input: hsl(20 5.9% 90%);
-    --color-ring: hsl(24.6 95% 53.1%);
+    --color-ring: oklch(0.61 0.11 222);
     --radius: 0.5rem;
 }
 

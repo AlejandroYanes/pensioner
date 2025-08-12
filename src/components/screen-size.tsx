@@ -1,6 +1,6 @@
 'use client';
 
-import { useScreenSize } from '../hooks';
+import { useEffect, useState } from 'react';
 
 export const ScreenSize = () => {
   const { height, width } = useScreenSize();
@@ -19,4 +19,26 @@ export const ScreenSize = () => {
       <span className="hidden 2xl:inline">2XL</span>
     </div>
   );
+};
+
+const useScreenSize = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    function updateDimensions() {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    updateDimensions();
+    window.addEventListener('resize', updateDimensions);
+
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
+
+  return dimensions;
 };

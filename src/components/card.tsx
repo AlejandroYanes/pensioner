@@ -5,7 +5,7 @@ import { cn } from './helpers';
 const Card = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      'rounded-lg border border-neutral-200 bg-white text-gray-950 shadow-xs',
+      'rounded-lg border border-neutral-200 bg-white text-gray-950',
       className
     )}
     {...props}
@@ -24,7 +24,7 @@ CardHeader.displayName = 'CardHeader'
 const CardTitle = ({ className, ...props }: React.ComponentProps<'h3'>) => (
   <h3
     className={cn(
-      'text-2xl font-semibold leading-none tracking-tight',
+      'text-md font-bold leading-none tracking-tight uppercase',
       className
     )}
     {...props}
