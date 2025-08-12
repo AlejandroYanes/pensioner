@@ -1,12 +1,26 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/card';
 import { NumberBlocks } from '@/components/number-blocks';
-import { InputWithLabel } from '@/components/input-with-label';
 import { Button } from '@/components/button';
 import { Separator } from '@/components/separator';
 import { Label } from '@/components/label';
 import { Input } from '@/components/input';
 
-export default function Calculator() {
+interface Props {
+  data: {
+    income: number;
+    retirementAge: number;
+    contributions: number;
+    employerContributions: number;
+  };
+  onChange: (data: Props['data']) => void;
+}
+
+export default function Calculator(props: Props) {
+  const form = useForm({
+    defaultValues: props.data,
+    resolver: zodResolver(schema),
+  });
+
   return (
     <Card>
       <CardHeader>
