@@ -1,19 +1,25 @@
 import { LocateFixedIcon, WalletIcon } from 'lucide-react';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/card';
+import { NumberBlocks } from '@/components/number-blocks';
+import { InputWithLabel } from '@/components/input-with-label';
+import { Button } from '@/components/button';
+import { Separator } from '@/components/separator';
 
 export default async function Home() {
   return (
     <main className="min-h-screen min-w-screen flex flex-col gap-8 p-10">
       <h1>Retirement Planner</h1>
-      <section className="flex flex-col-reverse md:grid md:grid-cols-2">
+      <section className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8">
         <div data-el="left-col" className="flex flex-col gap-4">
           <div data-el="graph" className="bg-neutral-200 w-full h-96" />
           <Stats />
           <Summary />
         </div>
 
-        <div data-el="right-col"></div>
+        <div data-el="right-col">
+          <Calculator />
+        </div>
       </section>
     </main>
   );
@@ -22,7 +28,7 @@ export default async function Home() {
 function Stats() {
   return (
     <Card>
-      <CardContent data-el="stats" className="grid grid-cols-3">
+      <CardContent data-el="stats" className="grid grid-cols-3 py-6">
         <Statline label="What you have" value={34847} secondary="£xx,xx/yr" color="orange" />
         <Statline label="What you'll have" value={389529} secondary="£xx,xxx/yr" color="green" />
         <Statline label="What you'll need" value={518847} secondary="£xx,xx/yr" color="blue" />
@@ -59,4 +65,46 @@ function Summary() {
       </CardContent>
     </Card>
   )
+}
+
+function Calculator() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Design your retirement</CardTitle>
+        <CardDescription>This is all based on a yearly income of £40,000</CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-8">
+        <div className="flex flex-col gap-6">
+          <InputWithLabel label="Desired income in retirement" />
+          <div className="flex gap-4 items-end">
+            <InputWithLabel label="My contributions" className="flex-1" />
+            <InputWithLabel label="Employer contributions" className="flex-1" />
+            <NumberBlocks label="Retirement age" className="flex-1" />
+          </div>
+          <Button>Save and see prediction</Button>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <span className="font-semibold text-lg">Current contributions</span>
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-[auto_40px_60px] gap-y-1 gap-x-2">
+              <span>Your contribution</span>
+              <span className="text-right">5%</span>
+              <span className="text-right">£500</span>
+              <span>Employer contribution</span>
+              <span className="text-right">5%</span>
+              <span className="text-right">£500</span>
+            </div>
+            <Separator />
+            <div className="grid grid-cols-[auto_40px_60px] gap-y-1 gap-x-2 font-semibold">
+              <span>Total</span>
+              <span className="text-right">10%</span>
+              <span className="text-right">£1000</span>
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
