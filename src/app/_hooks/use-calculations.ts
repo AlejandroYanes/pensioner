@@ -1,7 +1,5 @@
 'use client'
 
-import { useMemo } from 'react'
-
 import {
   calculatePensionProjections,
   calculateRequiredContributionPercent,
@@ -17,16 +15,15 @@ export function usePensionCalculations(state: PensionState) {
     desiredAnnualIncome: state.income,
     employeeContributionPercent: state.contributions,
     employerContributionPercent: state.employerContributions,
-    currentSalary: 50000,// TODO: need to add an input to track this
-    existingPensionPot: state.currentPot, // TODO: need to add UI for this
+    currentSalary: state.income,
+    existingPensionPot: state.currentPot,
   }
 
   const pensionResults = calculatePensionProjections(pensionInputs)
-  const requiredEmployeeContribution = calculateRequiredContributionPercent(pensionInputs, pensionResults.requiredPensionPot)
+  const requiredContributions = calculateRequiredContributionPercent(pensionInputs, pensionResults.requiredPensionPot)
 
   return {
-    pensionInputs,
     pensionResults,
-    requiredEmployeeContribution,
+    requiredContributions,
   }
 }

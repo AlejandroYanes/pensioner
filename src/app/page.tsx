@@ -19,7 +19,7 @@ const DEFAULT_STATE: PensionState = {
 
 export default function Home() {
   const [state, setState] = useState<PensionState>(DEFAULT_STATE)
-  const { pensionResults } = usePensionCalculations(state)
+  const { pensionResults, requiredContributions } = usePensionCalculations(state)
 
   return (
     <main className="min-h-screen min-w-screen flex items-stretch">
@@ -42,7 +42,7 @@ export default function Home() {
               projectedPension={pensionResults.projectedPensionPot}
               requiredPension={pensionResults.requiredPensionPot}
             />
-            <Summary />
+            <Summary data={state} requiredContributions={requiredContributions} />
           </div>
 
           <div data-el="right-col">

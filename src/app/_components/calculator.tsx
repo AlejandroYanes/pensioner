@@ -17,6 +17,7 @@ interface Props {
 
 const schema = z.object({
   income: z.number().min(20000).max(100000),
+  currentPot: z.number().min(0).max(1000000),
   retirementAge: z.number().min(50).max(75),
   contributions: z.number().min(0).max(100),
   employerContributions: z.number().min(0).max(100),
@@ -43,12 +44,6 @@ export default function Calculator(props: Props) {
     if (isNaN(value)) {
       e.preventDefault();
     }
-
-    // if (e.key === 'ArrowUp') {
-    //   e.target.value = (value + 100).toString();
-    // } else if (e.key === 'ArrowDown') {
-    //   e.target.value = (value - 100).toString();
-    // }
   }
 
   return (
@@ -75,17 +70,18 @@ export default function Calculator(props: Props) {
               )}
             />
             <Controller
+              name="currentPot"
               control={form.control}
-              name="retirementAge"
               render={({ field, fieldState }) => (
-                <NumberBlocks
-                  label="Retirement age"
-                  className="w-full"
-                  {...field}
-                  value={field.value}
-                  onChange={field.onChange}
-                  error={fieldState.error?.message}
-                />
+                <div className="flex flex-col gap-2">
+                  <Label>Current pot</Label>
+                  <div className="flex">
+                    <div className="border-neutral-300 bg-neutral-100 border-t border-b border-l rounded-md rounded-r-none flex items-center justify-center px-3 shrink-0">£</div>
+                    <Input className="border-l-none rounded-none text-right" type="number" {...field} value={field.value} onKeyDown={handleNumberKeyDown} onChange={(e) => field.onChange(Number(e.target.value))} />
+                    <div className="border-neutral-300 bg-neutral-100 border-t border-b border-r rounded-md rounded-l-none flex items-center justify-center px-3 shrink-0">/ yr</div>
+                  </div>
+                  {fieldState.error && <span className="text-red-500 text-sm">{fieldState.error.message}</span>}
+                </div>
               )}
             />
           </div>
@@ -115,6 +111,22 @@ export default function Calculator(props: Props) {
                   className="w-full"
                   suffix="%"
                   max={10}
+                  {...field}
+                  value={field.value}
+                  onChange={field.onChange}
+                  error={fieldState.error?.message}
+                />
+              )}
+            />
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <Controller
+              control={form.control}
+              name="retirementAge"
+              render={({ field, fieldState }) => (
+                <NumberBlocks
+                  label="Retirement age"
+                  className="w-full"
                   {...field}
                   value={field.value}
                   onChange={field.onChange}
