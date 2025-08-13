@@ -2,7 +2,6 @@ import { LocateFixedIcon, WalletIcon } from 'lucide-react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/card';
 import type { PensionState } from '@/types/pension';
-import type { PensionResults } from '@/utils/pension-calculations';
 import { formatCurrency } from '@/utils/numbers';
 
 interface Props {

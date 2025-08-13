@@ -35,7 +35,7 @@ export default function Home() {
               requiredPensionPot={pensionResults.requiredPensionPot}
               currentSalary={state.income}
               totalContributionPercent={state.contributions + state.employerContributions}
-              existingPensionPot={0}
+              existingPensionPot={state.currentPot}
             />
             <Breakdown
               currentPension={pensionResults.currentPension}
