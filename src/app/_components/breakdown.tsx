@@ -2,13 +2,20 @@ import { Card, CardContent } from '@/components/card';
 import { cn } from '@/components/helpers';
 import { formatCurrency } from '@/utils/numbers';
 
-export default function Breakdown() {
+interface Props {
+  currentPension: number;
+  projectedPension: number;
+  requiredPension: number;
+}
+
+export default function Breakdown(props: Props) {
+  const { currentPension, projectedPension, requiredPension } = props;
   return (
     <Card>
       <CardContent data-el="stats" className="grid grid-cols-3 py-6">
-        <Statline label="What you have" value={34847} secondary="£xx,xx/yr" color="bg-orange-500" />
-        <Statline label="What you'll have" value={389529} secondary="£xx,xxx/yr" color="bg-green-500" />
-        <Statline label="What you'll need" value={518847} secondary="£xx,xx/yr" color="bg-cyan-500" />
+        <Statline label="What you have" value={currentPension} secondary="£xx,xx/yr" color="bg-orange-500" />
+        <Statline label="What you'll have" value={projectedPension} secondary="£xx,xxx/yr" color="bg-green-500" />
+        <Statline label="What you'll need" value={requiredPension} secondary="£xx,xx/yr" color="bg-cyan-500" />
       </CardContent>
     </Card>
   );

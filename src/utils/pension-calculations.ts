@@ -6,24 +6,21 @@ export interface PensionInputs {
   employerContributionPercent: number
   currentSalary: number
   existingPensionPot?: number
-  includeStatePension: boolean
 }
 
 export interface PensionResults {
+  currentPension: number
   projectedPensionPot: number
   requiredPensionPot: number
-  currentPensionValue: number
   monthlyContributions: number
   yearsToRetirement: number
   yearsInRetirement: number
   annualContributions: number
   shortfall: number
-  statePensionAmount: number
 }
 
 const ANNUAL_INTEREST_RATE = 0.049 // 4.9%
 const LIFE_EXPECTANCY = 81
-const ANNUAL_STATE_PENSION = 10600 // Approximate full state pension 2024
 const ASSUMED_CURRENT_AGE = 25 // User starts working at 25
 const ASSUMED_SALARY = 50000 // Assumed annual salary for calculations
 
@@ -36,7 +33,6 @@ export function calculatePensionProjections(inputs: PensionInputs): PensionResul
     employerContributionPercent,
     currentSalary = ASSUMED_SALARY,
     existingPensionPot = 0,
-    includeStatePension,
   } = inputs
 
   const yearsToRetirement = retirementAge - currentAge
@@ -55,17 +51,8 @@ export function calculatePensionProjections(inputs: PensionInputs): PensionResul
 
   const projectedPensionPot = futureValueExisting + futureValueContributions
 
-  // Calculate required pension pot for desired income
-  // Using annuity formula to determine lump sum needed for annual payments
-  const statePensionAmount = includeStatePension ? ANNUAL_STATE_PENSION : 0
-  const requiredPrivatePensionIncome = Math.max(0, desiredAnnualIncome - statePensionAmount)
-
   // Present value of annuity formula: PV = PMT * [(1 - (1 + r)^-n) / r]
-  const requiredPensionPot =
-    requiredPrivatePensionIncome * ((1 - Math.pow(1 + ANNUAL_INTEREST_RATE, -yearsInRetirement)) / ANNUAL_INTEREST_RATE)
-
-  // Calculate current pension value (what they have now)
-  const currentPensionValue = existingPensionPot
+  const requiredPensionPot = desiredAnnualIncome * ((1 - Math.pow(1 + ANNUAL_INTEREST_RATE, -yearsInRetirement)) / ANNUAL_INTEREST_RATE)
 
   // Calculate shortfall
   const shortfall = Math.max(0, requiredPensionPot - projectedPensionPot)
@@ -73,13 +60,12 @@ export function calculatePensionProjections(inputs: PensionInputs): PensionResul
   return {
     projectedPensionPot,
     requiredPensionPot,
-    currentPensionValue,
+    currentPension: existingPensionPot,
     monthlyContributions,
     yearsToRetirement,
     yearsInRetirement,
     annualContributions,
     shortfall,
-    statePensionAmount,
   }
 }
 

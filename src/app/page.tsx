@@ -1,15 +1,25 @@
 'use client'
+import { useState } from 'react';
+
+import type { PensionState } from '@/types/pension';
 
 import PensionChart from './_components/pension-chart';
 import Summary from './_components/summary';
 import Breakdown from './_components/breakdown';
 import Calculator from './_components/calculator';
-import { usePensionState } from './_hooks/use-pension-state';
 import { usePensionCalculations } from './_hooks/use-calculations';
 
+const DEFAULT_STATE: PensionState = {
+  income: 50000,
+  retirementAge: 65,
+  contributions: 5,
+  employerContributions: 3,
+  currentPot: 5000,
+}
+
 export default function Home() {
-  const [state, actions] = usePensionState()
-  const { selectedIncome, pensionResults, requiredEmployeeContribution } = usePensionCalculations(state)
+  const [state, setState] = useState<PensionState>(DEFAULT_STATE)
+  const { pensionResults } = usePensionCalculations(state)
 
   return (
     <main className="min-h-screen min-w-screen flex items-stretch">
@@ -23,21 +33,20 @@ export default function Home() {
               retirementAge={state.retirementAge}
               projectedPensionPot={pensionResults.projectedPensionPot}
               requiredPensionPot={pensionResults.requiredPensionPot}
-              currentSalary={state.currentSalary}
-              totalContributionPercent={
-                state.mandatoryContribution +
-                state.voluntaryContribution +
-                state.employerContribution +
-                state.employerMatching
-              }
-              existingPensionPot={state.existingPensionPot}
+              currentSalary={state.income}
+              totalContributionPercent={state.contributions + state.employerContributions}
+              existingPensionPot={0}
             />
-            <Breakdown />
+            <Breakdown
+              currentPension={pensionResults.currentPension}
+              projectedPension={pensionResults.projectedPensionPot}
+              requiredPension={pensionResults.requiredPensionPot}
+            />
             <Summary />
           </div>
 
           <div data-el="right-col">
-            <Calculator />
+            <Calculator data={state} onChange={(next) => setState((prev) => ({ ...prev, ...next }))} />
           </div>
         </section>
       </section>
