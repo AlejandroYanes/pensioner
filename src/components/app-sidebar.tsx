@@ -81,7 +81,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <a href={item.url}>
                     <item.icon />
                     <span>{item.name}</span>
-                    {item.new && <span className="ml-2 text-xs font-bold bg-lime-100 text-lime-700 px-2 py-1 rounded-md">New</span>}
+                    {item.new && <span className="ml-auto text-xs font-bold bg-lime-100 text-lime-700 px-2 py-1 rounded-md">New</span>}
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>

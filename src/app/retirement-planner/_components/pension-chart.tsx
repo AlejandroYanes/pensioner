@@ -117,7 +117,7 @@ export default function PensionChart(props: Props) {
 
   return (
     <Card>
-      <CardContent className="pt-6">
+      <CardContent className="pt-6 px-0 md:px-6">
         <div className="w-full h-64">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>

@@ -53,7 +53,7 @@ export default function Calculator(props: Props) {
       </CardHeader>
       <CardContent className="flex flex-col gap-8">
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Controller
               name="income"
               control={form.control}
@@ -85,7 +85,7 @@ export default function Calculator(props: Props) {
               )}
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Controller
               control={form.control}
               name="contributions"
@@ -119,7 +119,7 @@ export default function Calculator(props: Props) {
               )}
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Controller
               control={form.control}
               name="retirementAge"
@@ -135,7 +135,7 @@ export default function Calculator(props: Props) {
               )}
             />
           </div>
-          <Button>Save and see prediction</Button>
+          <Button className="mt-4 md:mt-0">Save and see prediction</Button>
         </form>
 
         <div className="flex flex-col gap-4">

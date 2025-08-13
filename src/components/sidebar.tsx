@@ -3,7 +3,7 @@
 import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { PanelLeftIcon } from 'lucide-react'
+import { MenuIcon } from 'lucide-react'
 
 import { useIsMobile } from '@/hooks/use-mobile'
 import { Button } from '@/components/button'
@@ -107,7 +107,7 @@ function SidebarProvider({
           } as React.CSSProperties
         }
         className={cn(
-          'group/sidebar-wrapper flex min-h-svh w-full',
+          'group/sidebar-wrapper flex flex-col md:flex-row min-h-svh w-full',
           className
         )}
         {...props}
@@ -174,7 +174,7 @@ function Sidebar({
 
   return (
     <div
-      className="group peer bg-accent text-white hidden md:block"
+      className="group peer bg-accent text-white"
       data-state={state}
       data-collapsible={state === 'collapsed' ? collapsible : ''}
       data-variant={variant}
@@ -240,7 +240,7 @@ function SidebarTrigger({
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <MenuIcon />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   )

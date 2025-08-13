@@ -12,8 +12,8 @@ export default function Breakdown(props: Props) {
   const { currentPension, projectedPension, requiredPension } = props;
   return (
     <Card>
-      <CardContent data-el="stats" className="grid grid-cols-3 py-6">
-        <Statline label="What you have" value={currentPension} color="bg-orange-500" />
+      <CardContent data-el="stats" className="flex flex-row flex-wrap *:w-1/2 gap-y-6 py-6 md:grid md:grid-cols-3 md:*:w-auto md:gap-0">
+        <Statline label="What you have" value={currentPension} color="bg-orange-300" />
         <Statline label="What you'll have" value={projectedPension} color="bg-green-500" />
         <Statline label="What you'll need" value={requiredPension} color="bg-cyan-500" />
       </CardContent>
@@ -21,7 +21,14 @@ export default function Breakdown(props: Props) {
   );
 }
 
-function Statline({ label, value, color }: { label: string; value: number; color: string }) {
+interface StatlineProps {
+  label: string;
+  value: number;
+  color: string;
+  className?: string;
+}
+
+function Statline({ label, value, color }: StatlineProps) {
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-1">
