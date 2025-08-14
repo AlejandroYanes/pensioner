@@ -17,6 +17,17 @@ A comprehensive retirement planning platform built with the [T3 Stack](https://c
 - Contribution recommendations to meet retirement goals
 - Visual comparison between current trajectory and retirement targets
 
+### Core Components
+
+- **Calculator**: Input form for financial parameters
+- **Pension Chart**: Visual representation of pension projections
+- **Summary**: Overview of current vs required contributions
+- **Breakdown**: Detailed analysis of pension calculations
+
+### Notes
+
+- For the **Sumary** I did not understand the objective of the first line, what information was it meant to show.
+
 ## Technology Stack
 
 This project is built using the modern T3 Stack:
@@ -71,17 +82,6 @@ src/
 ├── utils/                     # Utility functions and calculations
 └── styles/                    # Global styles
 ```
-
-## Core Components
-
-- **Calculator**: Input form for financial parameters
-- **Pension Chart**: Visual representation of pension projections
-- **Summary**: Overview of current vs required contributions
-- **Breakdown**: Detailed analysis of pension calculations
-
-### Notes
-
-- For the **Sumary** I did not understand the objective of the first line, what information was it meant to show.
 
 ## Contributing
 
