@@ -82,32 +82,3 @@ src/
 ├── utils/                     # Utility functions and calculations
 └── styles/                    # Global styles
 ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## Learn More
-
-To learn more about the T3 Stack and the technologies used:
-
-- [T3 Stack Documentation](https://create.t3.gg/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
-
-## Deployment
-
-This application can be deployed on various platforms:
-
-- [Vercel](https://create.t3.gg/en/deployment/vercel) (recommended)
-- [Netlify](https://create.t3.gg/en/deployment/netlify)
-- [Docker](https://create.t3.gg/en/deployment/docker)
-
-## License
-
-[Add your license information here]
