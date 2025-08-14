@@ -21,7 +21,6 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarRail,
-  useSidebar,
 } from '@/components/sidebar';
 
 const links = [
@@ -65,12 +64,11 @@ const links = [
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
-  const { isMobile } = useSidebar();
 
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <h1 className="text-3xl font-bold">Mintago</h1>
+        <h1 className="text-3xl font-bold pl-9 pb-6">Mintago</h1>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">

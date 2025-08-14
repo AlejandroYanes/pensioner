@@ -23,7 +23,7 @@ const DEFAULT_STATE: PensionState = {
   currentPot: 5000,
 }
 
-export default function Home() {
+export default function PensionPlanner() {
   const [state, setState] = useState<PensionState>(DEFAULT_STATE)
   const { pensionResults, requiredContributions } = usePensionCalculations(state)
 
